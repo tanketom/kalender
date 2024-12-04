@@ -22,11 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
           const videoData = data[day];
-          square.style.opacity = '0';
-          setTimeout(() => {
-            square.innerHTML = `<iframe width="100" height="100" src="${videoData.url}" frameborder="0" allowfullscreen></iframe><p>${videoData.poem}</p>`;
-            square.style.opacity = '1';
-          }, 500);
+          document.getElementById('videoContainer').innerHTML = `<iframe width="560" height="315" src="${videoData.url}" frameborder="0" allowfullscreen></iframe>`;
+          document.getElementById('poemContainer').innerText = videoData.poem;
+          document.getElementById('overlay').style.display = 'flex';
         });
     } else {
       square.classList.add('shake');
@@ -34,5 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         square.classList.remove('shake');
       }, 500);
     }
+  }
+
+  document.querySelector('.back').addEventListener('click', closeOverlay);
+
+  function closeOverlay() {
+    document.getElementById('overlay').style.display = 'none';
   }
 });
