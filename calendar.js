@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch(`videos.json`)
         .then(response => response.json())
         .then(data => {
-          const videoUrl = data[day];
+          const videoData = data[day];
           square.style.opacity = '0';
           setTimeout(() => {
-            square.innerHTML = `<iframe width="100" height="100" src="${videoUrl}" frameborder="0" allowfullscreen></iframe>`;
+            square.innerHTML = `<iframe width="100" height="100" src="${videoData.url}" frameborder="0" allowfullscreen></iframe><p>${videoData.poem}</p>`;
             square.style.opacity = '1';
           }, 500);
         });
